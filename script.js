@@ -1,10 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const fileList = document.getElementById('fileList');
-    const files = ['file1.txt', 'file2.pdf', 'file3.zip'];
+// Array of file names
+var files = ['w1.png', 'w2.jpg', 'example.txt'];
 
-    files.forEach(file => {
-        const li = document.createElement('li');
-        li.innerHTML = `${file} <a href="files/${file}" download>Download</a>`;
-        fileList.appendChild(li);
-    });
+// Generate download links dynamically
+var downloadLinksContainer = document.getElementById('downloadLinks');
+
+files.forEach(function(file) {
+    var link = document.createElement('a');
+    link.href = 'files/' + file;
+    link.download = file;
+    link.textContent = 'Download ' + file;
+
+    var lineBreak = document.createElement('br');
+
+    downloadLinksContainer.appendChild(link);
+    downloadLinksContainer.appendChild(lineBreak);
 });
