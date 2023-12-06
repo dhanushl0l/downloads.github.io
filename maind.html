@@ -4,7 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Download Example</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        #downloadLinks a {
+            color: red;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        #downloadLinks a:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            color: red;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            border: 1px solid white; /* Add a white border to image previews */
+            margin-right: 10px; /* Add some spacing between previews and download links */
+        }
+    </style>
 </head>
 <body>
 
@@ -12,6 +47,41 @@
 
     <div id="downloadLinks"></div>
 
-    <script src="script.js"></script>
+    <script>
+        // Array of file details including file name and type
+        var files = [
+            { name: 'w1.png', type: 'image/png' },
+            { name: 'w2.jpg', type: 'image/jpeg' },
+            { name: 't1.txt', type: 'text/plain' }
+        ];
+
+        // Generate download links dynamically
+        var downloadLinksContainer = document.getElementById('downloadLinks');
+
+        files.forEach(function (file) {
+            var link = document.createElement('a');
+            link.href = 'files/' + file.name;
+            link.download = file.name;
+
+            // If the file is an image, create an image element for preview
+            if (file.type.startsWith('image/')) {
+                var img = document.createElement('img');
+                img.src = 'files/' + file.name;
+                img.alt = file.name;
+                img.style.maxWidth = '100px'; // Set the maximum width for preview
+
+                // Append the image to the downloadLinksContainer
+                downloadLinksContainer.appendChild(img);
+            }
+
+            link.textContent = 'Download ' + file.name;
+
+            var lineBreak = document.createElement('br');
+
+            // Append the link and line break to the downloadLinksContainer
+            downloadLinksContainer.appendChild(link);
+            downloadLinksContainer.appendChild(lineBreak);
+        });
+    </script>
 </body>
 </html>
