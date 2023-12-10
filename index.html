@@ -3,165 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Download Example</title>
-    <style>
-        body {
-            background-color: #111;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        header {
-            background-color: #333;
-            padding: 20px;
-        }
-
-        h1 {
-            color: red;
-            margin: 0;
-        }
-
-        #downloadLinks {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .file-container {
-            margin: 20px;
-            text-align: center;
-            padding: 15px;
-        }
-
-        a {
-            color: red;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        img {
-            max-width: 100%;
-            border: 1px solid white;
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: darkred;
-        }
-
-        /* Default icon for image files */
-        .image-file-icon {
-            max-width: 100%;
-            border: 1px solid white;
-            margin-bottom: 10px;
-        }
-
-        /* Responsive design for images and buttons */
-        @media (max-width: 599px) {
-            img, button {
-                width: 90%;
-            }
-        }
-
-        @media (min-width: 600px) {
-            img, button {
-                width: 50%;
-            }
-        }
-    </style>
+    <title>File By Your Father</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <h1>File Download Example</h1>
-    </header>
+    <h1>Files By Your Father</h1>
 
-    <main id="downloadLinks"></main>
+    <button onclick="location.href='images.html'" class="fileTypeButton">View Images</button>
+    <button onclick="location.href='videos.html'" class="fileTypeButton">Watch Videos</button>
+    <button onclick="location.href='documents.html'" class="fileTypeButton">Read Documents</button>
+    <button onclick="location.href='software.html'" class="fileTypeButton">Download Software</button>
+    <button onclick="location.href='music.html'" class="fileTypeButton">Listen to Music</button>
 
-    <script>
-
-        // Array of file details including file name and type
-        var files = [
-            { name: 'w1.png', type: 'image/png' },
-            { name: 'w2.jpg', type: 'image/jpeg' },
-            { name: 't1.txt', type: 'text/plain' }
-        ];
-
-        // Generate download links dynamically
-        var downloadLinksContainer = document.getElementById('downloadLinks');
-
-        files.forEach(function (file) {
-            var fileContainer = document.createElement('div');
-            fileContainer.className = 'file-container';
-
-            // If the file is an image, create an image element for preview
-            if (file.type.startsWith('image/')) {
-                var img = document.createElement('img');
-                img.src = 'files/' + file.name;
-                img.alt = file.name;
-
-                // Append the image to the file container
-                fileContainer.appendChild(img);
-
-                // Create a download button for image files
-                var button = document.createElement('button');
-                button.textContent = 'Download';
-                button.onclick = function () {
-                    window.location.href = 'files/' + file.name;
-                };
-
-                // Append the button to the file container
-                fileContainer.appendChild(button);
-            } else if (file.type === 'text/plain') {
-                // Create a default icon for text files
-                var imgFileIcon = document.createElement('img');
-                imgFileIcon.src = 'default-image-icon.jpg'; // Replace with the path to your default image icon
-                imgFileIcon.alt = 'Default Icon';
-                imgFileIcon.className = 'image-file-icon';
-
-                // Append the icon to the file container
-                fileContainer.appendChild(imgFileIcon);
-
-                // Create a download link for text files
-                var link = document.createElement('a');
-                link.href = 'files/' + file.name;
-                link.download = file.name;
-                link.textContent = 'Download ' + file.name;
-
-                // Append the link to the file container
-                fileContainer.appendChild(link);
-            } else {
-                // Create a download link for other file types
-                var link = document.createElement('a');
-                link.href = 'files/' + file.name;
-                link.download = file.name;
-                link.textContent = 'Download ' + file.name;
-
-                // Append the link to the file container
-                fileContainer.appendChild(link);
-            }
-
-            // Append the file container to the downloadLinksContainer
-            downloadLinksContainer.appendChild(fileContainer);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

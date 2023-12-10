@@ -1,0 +1,58 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+    text-align: center;
+}
+
+.fileTypeButton {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.fileTypeButton:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
+    transform: scale(1.05);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --button-bg-color: #333333;
+        --button-text-color: #ffffff;
+        --button-hover-bg-color: #555555;
+        --button-hover-text-color: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #ffffff;
+        --text-color: #333333;
+        --button-bg-color: #007BFF;
+        --button-text-color: #ffffff;
+        --button-hover-bg-color: #0056b3;
+        --button-hover-text-color: #ffffff;
+    }
+}
+
+/* Add more styles and animations as needed */
+
