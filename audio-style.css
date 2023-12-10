@@ -1,0 +1,139 @@
+body,
+h1,
+p,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+    text-align: center;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.audio-container {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.play-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: #45a049;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-info {
+    padding: 10px;
+}
+
+
+.audio-info {
+    margin: 0;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.audio-info:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+
+.modal-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#audioPlayer {
+    width: 100%;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+#downloadAudioLink img {
+    width: 62px;
+    height: 62px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#downloadAudioLink img:hover {
+    transform: scale(1.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --button-bg-color: #333333;
+        --button-text-color: #ffffff;
+        --button-hover-bg-color: #555555;
+        --button-hover-text-color: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #ffffff;
+        --text-color: #333333;
+        --button-bg-color: #000000;
+        --button-text-color: #ffffff;
+        --button-hover-bg-color: #0056b3;
+        --button-hover-text-color: #ffffff;
+    }
+}

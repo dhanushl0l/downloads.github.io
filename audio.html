@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Gallery</title>
+    <link rel="stylesheet" href="audio-style.css">
+    <link rel="stylesheet" href="path/to/lightbox.min.css">
+</head>
+<body>
+    <h1>Audios</h1>
+
+    <div id="gallery"></div>
+
+    <!-- Modal -->
+    <div class="modal" id="audioModal">
+        <div class="modal-content">
+            <div class="modal-buttons">
+                <audio controls id="audioPlayer"></audio>
+                <a id="downloadAudioLink" download><img src="assets/download.png" alt="Download"></a>
+            </div>
+            <p id="audioInfo"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // Open the audio modal
+        function openAudioModal(audioUrl, fileName) {
+            var modal = document.getElementById('audioModal');
+            var audioPlayer = document.getElementById('audioPlayer');
+            var downloadAudioLink = document.getElementById('downloadAudioLink');
+            var audioInfo = document.getElementById('audioInfo');
+
+            modal.style.display = 'flex';
+            audioPlayer.src = audioUrl;
+            downloadAudioLink.href = audioUrl;
+            downloadAudioLink.setAttribute('download', fileName);
+            audioInfo.innerText = 'Now playing: ' + fileName;
+
+            // Automatically play the audio
+            audioPlayer.play();
+        }
+
+        // Close the audio modal when clicking outside the player and download elements
+        function closeAudioModal(event) {
+            var modal = document.getElementById('audioModal');
+            var audioPlayer = document.getElementById('audioPlayer');
+
+            if (event.target === modal) {
+                // Check if the clicked element is the modal itself
+                modal.style.display = 'none';
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
+        }
+
+        // Attach the closeAudioModal function to the modal's click event
+        document.getElementById('audioModal').addEventListener('click', closeAudioModal);
+
+        // Function to generate a random color
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Initial code for loading audio elements
+        $(document).ready(function () {
+            var folderPath = 'audio/';
+
+            $.ajax({
+                url: folderPath,
+                success: function (data) {
+                    $(data).find('a:contains(".mp3"), a:contains(".flac")').each(function () {
+                        var fileName = $(this).attr('href');
+                        var audioUrl = folderPath + fileName;
+                        var audioContainer = $('<div class="audio-container"></div>');
+                        var audioElement = $('<p class="audio-info">' + fileName + '</p>');
+
+                        // Attach a click event handler to each audio
+                        audioElement.on('click', function() {
+                            openAudioModal(audioUrl, fileName);
+                        });
+
+                        // Generate a random background color for audio-info
+                        var randomColor = getRandomColor();
+                        audioElement.css('background-color', randomColor);
+
+                        // Append elements to the DOM
+                        audioContainer.append(audioElement);
+                        $('#gallery').append(audioContainer);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
